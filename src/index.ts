@@ -6,6 +6,7 @@ import { User, Credentials, Profile } from './entities/user.entity'
 import { Room } from './entities/room.entity'
 import { MikroORM, Options } from '@mikro-orm/core'
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection'
+import { RedisCacheAdapter } from './adapters/redis.adapter'
 
 export function createDatabase(options: Options) {
     return MikroORM.init({
@@ -24,5 +25,6 @@ export {
     User,
     Credentials,
     Profile,
-    Room
+    Room,
+    RedisCacheAdapter
 }
