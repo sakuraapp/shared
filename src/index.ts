@@ -8,7 +8,7 @@ import { MikroORM, Options } from '@mikro-orm/core'
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection'
 import { RedisCacheAdapter } from './adapters/redis.adapter'
 
-export function createDatabase(options: Options) {
+export function createDatabase(options: Options): Promise<MikroORM> {
     return MikroORM.init({
         type: 'mongo',
         metadataProvider: TsMorphMetadataProvider,
@@ -18,6 +18,7 @@ export function createDatabase(options: Options) {
 }
 
 export {
+    MikroORM,
     BaseRepository,
     NameRepository,
     Discriminator,
