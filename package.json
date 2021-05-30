@@ -1,0 +1,33 @@
+{
+  "name": "@sakuraapp/shared",
+  "version": "1.0.0",
+  "description": "Shared code for Sakura API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakuraapp/shared.git"
+  },
+  "author": {
+    "name": "Ahmed El-Marakby",
+    "email": "ahmedelmarakby@hotmail.com",
+    "url": "https://ahmedelmarakby.com"
+  },
+  "license": "AGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/sakuraapp/shared/issues"
+  },
+  "homepage": "https://github.com/sakuraapp/shared#readme",
+  "dependencies": {
+    "@mikro-orm/core": "^4.5.5",
+    "@mikro-orm/mongodb": "^4.5.5",
+    "@mikro-orm/reflection": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/ioredis": "^4.26.4",
+    "@types/node": "^15.6.1",
+    "typescript": "^4.3.2"
+  }
+}
