@@ -64,8 +64,12 @@ export class Broker {
                 return
             }
             
-            this.messages.emit(channel, message.d)
+            this.onMessage(channel, message.d)
         })
+    }
+
+    protected onMessage<T>(channel: string, data: T): void {
+        this.messages.emit(channel, data)
     }
 
     publish<T>(channel: string, data: T): Promise<number> {
