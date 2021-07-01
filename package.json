@@ -1,6 +1,6 @@
 {
   "name": "@sakuraapp/shared",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Shared code for Sakura API",
   "main": "dist/index.js",
   "scripts": {

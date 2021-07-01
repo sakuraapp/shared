@@ -3,6 +3,8 @@ import { encode, decode } from '@msgpack/msgpack'
 import Redis, { Redis as RedisInstance } from 'ioredis'
 import { v4 } from 'uuid'
 
+export type BrokerHandler<T> = (data: T) => void
+
 export interface BrokerMessage<T = unknown> {
     d: T // data
     s: string // source broker id
@@ -15,13 +17,11 @@ export interface BrokerOptions {
 
 export class Broker {
     public readonly id = v4()
-
-    public pub: RedisInstance
-    public sub: RedisInstance
-
     public readonly messages = new EventEmitter()
 
-    private readonly opts: BrokerOptions
+    protected readonly opts: BrokerOptions
+    protected pub: RedisInstance
+    protected sub: RedisInstance
 
     constructor(opts: BrokerOptions) {
         this.opts = opts
@@ -35,11 +35,11 @@ export class Broker {
         return decode(data) as BrokerMessage<T>
     }
 
-    private cloneClient(): RedisInstance {
+    protected cloneClient(): RedisInstance {
         return new Redis(this.opts.client.options)
     }
 
-    private initPub(): void {
+    protected initPub(): void {
         let client: RedisInstance = this.opts.client
 
         if (this.sub) {
@@ -49,7 +49,7 @@ export class Broker {
         this.pub = client
     }
 
-    private initSub(): void {
+    protected initSub(): void {
         let client: RedisInstance = this.opts.client
 
         if (this.pub) {
@@ -81,7 +81,7 @@ export class Broker {
         return this.pub.send_command('PUBLISH', channel, this.serialize(message))
     }
 
-    async subscribe<T>(channel: string, handler: (data: T) => void) {
+    async subscribe<T>(channel: string, handler: BrokerHandler<T>) {
         if (!this.sub) {
             this.initSub()
         }
@@ -93,7 +93,7 @@ export class Broker {
         this.messages.on(channel, handler)
     }
 
-    async unsubscribe<T>(channel: string, handler: (data: T) => void) {
+    async unsubscribe<T>(channel: string, handler: BrokerHandler<T>) {
         this.messages.off(channel, handler)
 
         if (this.messages.listenerCount(channel) === 0) {
