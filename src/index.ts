@@ -7,6 +7,7 @@ import { Room } from './entities/room.entity'
 import { MikroORM, Options } from '@mikro-orm/core'
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection'
 import { RedisCacheAdapter } from './adapters/redis.adapter'
+import { Broker, BrokerOptions, BrokerMessage } from './broker'
 
 export function createDatabase(options: Options): Promise<MikroORM> {
     return MikroORM.init({
@@ -27,5 +28,8 @@ export {
     Credentials,
     Profile,
     Room,
-    RedisCacheAdapter
+    RedisCacheAdapter,
+    Broker,
+    BrokerOptions,
+    BrokerMessage,
 }

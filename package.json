@@ -1,6 +1,6 @@
 {
   "name": "@sakuraapp/shared",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Shared code for Sakura API",
   "main": "dist/index.js",
   "scripts": {
@@ -23,11 +23,14 @@
   "dependencies": {
     "@mikro-orm/core": "^4.5.5",
     "@mikro-orm/mongodb": "^4.5.5",
-    "@mikro-orm/reflection": "^4.5.5"
+    "@mikro-orm/reflection": "^4.5.5",
+    "@msgpack/msgpack": "^2.7.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/ioredis": "^4.26.4",
     "@types/node": "^15.6.1",
+    "@types/uuid": "^8.3.0",
     "typescript": "^4.3.2"
   }
 }
