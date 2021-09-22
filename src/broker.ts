@@ -3,6 +3,11 @@ import { encode, decode } from '@msgpack/msgpack'
 import Redis, { Redis as RedisInstance } from 'ioredis'
 import { v4 } from 'uuid'
 
+export const DEFAULT_BROKER_OPTIONS: Partial<BrokerOptions> = {
+    allowOwnMessages: false,
+    maxListeners: undefined,
+}
+
 export type BrokerHandler<T> = (data: T) => void
 
 export interface BrokerMessage<T = unknown> {
@@ -13,6 +18,7 @@ export interface BrokerMessage<T = unknown> {
 export interface BrokerOptions {
     client: RedisInstance
     allowOwnMessages?: boolean
+    maxListeners?: number
 }
 
 export class Broker {
@@ -24,7 +30,10 @@ export class Broker {
     protected sub: RedisInstance
 
     constructor(opts: BrokerOptions) {
-        this.opts = opts
+        this.opts = {
+            ...DEFAULT_BROKER_OPTIONS,
+            ...opts,
+        }
     }
 
     private serialize<T>(message: BrokerMessage<T>): Buffer {
@@ -90,11 +99,18 @@ export class Broker {
             this.initSub()
         }
 
-        if (this.messages.listenerCount(channel) === 0) {
+        const listeners = this.messages.listenerCount(channel)
+        const { maxListeners } = this.opts
+
+        if (listeners === 0) {
             await this.sub.subscribe(channel)
+        } else if (maxListeners > 0 && listeners >= maxListeners) {
+            return false
         }
 
         this.messages.on(channel, handler)
+
+        return true
     }
 
     async unsubscribe<T>(channel: string, handler: BrokerHandler<T>) {
