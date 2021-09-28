@@ -1,7 +1,7 @@
-package resources
+package resource
 
 import (
-	"github.com/sakuraapp/shared/models"
+	"github.com/sakuraapp/shared/model"
 	"gopkg.in/guregu/null.v4"
 )
 
@@ -12,7 +12,7 @@ type User struct {
 	Avatar null.String `json:"avatar"`
 }
 
-func NewUser(user *models.User) *User {
+func NewUser(user *model.User) *User {
 	return &User{
 		Id: user.Id,
 		Username: user.Username,

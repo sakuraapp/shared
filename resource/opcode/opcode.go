@@ -1,4 +1,4 @@
-package opcodes
+package opcode
 
 type Opcode int
 

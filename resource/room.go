@@ -1,7 +1,7 @@
-package resources
+package resource
 
 import (
-	"github.com/sakuraapp/shared/models"
+	"github.com/sakuraapp/shared/model"
 )
 
 type Room struct {
@@ -11,7 +11,7 @@ type Room struct {
 	Private bool `json:"private"`
 }
 
-func NewRoom(room *models.Room) *Room {
+func NewRoom(room *model.Room) *Room {
 	return &Room{
 		room.Id,
 		room.Name,
@@ -20,7 +20,7 @@ func NewRoom(room *models.Room) *Room {
 	}
 }
 
-func NewRoomList(rooms []models.Room) []*Room {
+func NewRoomList(rooms []model.Room) []*Room {
 	list := make([]*Room, len(rooms))
 
 	for i, v := range rooms {

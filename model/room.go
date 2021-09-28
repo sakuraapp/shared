@@ -1,4 +1,4 @@
-package models
+package model
 
 type Room struct {
 	Id int64

@@ -1,4 +1,4 @@
-package models
+package model
 
 type Discriminator struct {
 	Id int64
