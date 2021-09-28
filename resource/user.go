@@ -6,7 +6,7 @@ import (
 )
 
 type User struct {
-	Id int64 `json:"id"`
+	Id model.UserId `json:"id"`
 	Username string `json:"username"`
 	Discriminator string `json:"discriminator"`
 	Avatar null.String `json:"avatar"`

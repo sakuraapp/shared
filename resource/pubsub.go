@@ -1,5 +1,7 @@
 package resource
 
+import "github.com/sakuraapp/shared/model"
+
 type MessageType int
 
 const (
@@ -9,8 +11,8 @@ const (
 )
 
 type MessageTarget struct {
-	UserIds []string `msgpack:"u,omitempty"`
-	IgnoredUserIds []string `msgpack:"i,omitempty"`
+	UserIds []model.UserId `msgpack:"u,omitempty"`
+	IgnoredSessionIds []string `msgpack:"i,omitempty"`
 }
 
 type ServerMessage struct {

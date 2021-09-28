@@ -4,8 +4,10 @@ import (
 	"gopkg.in/guregu/null.v4"
 )
 
+type UserId = int32
+
 type User struct {
-	Id int64
+	Id UserId
 	Username string
 	Avatar null.String
 	Provider string
