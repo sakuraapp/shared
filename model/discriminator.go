@@ -1,9 +1,9 @@
 package model
 
 type Discriminator struct {
-	Id int64
+	Id int32
 	Name string
 	Value string
-	OwnerId int64
+	OwnerId UserId
 	Owner *User
 }

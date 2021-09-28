@@ -1,9 +1,9 @@
 package model
 
 type Room struct {
-	Id int64
+	Id int32
 	Name string
-	OwnerId int64 ``
+	OwnerId UserId ``
 	Owner *User   `pg:"rel:has-one"`
 	Private bool
 }
