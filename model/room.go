@@ -1,7 +1,9 @@
 package model
 
+type RoomId = int32
+
 type Room struct {
-	Id int32
+	Id RoomId
 	Name string
 	OwnerId UserId ``
 	Owner *User   `pg:"rel:has-one"`

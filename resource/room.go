@@ -5,7 +5,7 @@ import (
 )
 
 type Room struct {
-	Id int64 `json:"id"`
+	Id model.RoomId `json:"id"`
 	Name string  `json:"name"`
 	Owner *User  `json:"owner"`
 	Private bool `json:"private"`
