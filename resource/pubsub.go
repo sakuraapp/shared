@@ -11,8 +11,8 @@ const (
 )
 
 type MessageTarget struct {
-	UserIds []model.UserId `msgpack:"u,omitempty"`
-	IgnoredSessionIds []string `msgpack:"i,omitempty"`
+	UserIds map[model.UserId]bool `msgpack:"u,omitempty"`
+	IgnoredSessionIds map[string]bool `msgpack:"i,omitempty"`
 }
 
 type ServerMessage struct {
