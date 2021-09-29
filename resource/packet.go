@@ -10,3 +10,7 @@ type Packet struct {
 	Data interface{} `json:"d"`
 	Time null.Int `json:"t"`
 }
+
+func (p *Packet) DataMap() map[string]interface{} {
+	return p.Data.(map[string]interface{})
+}
