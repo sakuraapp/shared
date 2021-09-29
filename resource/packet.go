@@ -7,6 +7,6 @@ import (
 
 type Packet struct {
 	Opcode opcode.Opcode `json:"op"`
-	Data map[string]interface{} `json:"d"`
+	Data interface{} `json:"d"`
 	Time null.Int `json:"t"`
 }
