@@ -7,8 +7,8 @@ import (
 
 type User struct {
 	Id model.UserId `json:"id"`
-	Username string `json:"username"`
-	Discriminator string `json:"discriminator"`
+	Username string `json:"username,omitempty"`
+	Discriminator string `json:"discriminator,omitempty"`
 	Avatar null.String `json:"avatar"`
 }
 

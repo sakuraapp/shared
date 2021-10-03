@@ -12,6 +12,10 @@ type Room struct {
 }
 
 func NewRoom(room *model.Room) *Room {
+	if room.Owner == nil && room.OwnerId != 0 {
+		room.Owner = &model.User{Id: room.OwnerId}
+	}
+
 	return &Room{
 		room.Id,
 		room.Name,
