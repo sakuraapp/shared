@@ -3,6 +3,7 @@ package resource
 import (
 	"github.com/sakuraapp/shared/resource/opcode"
 	"gopkg.in/guregu/null.v4"
+	"time"
 )
 
 type Packet struct {
@@ -13,4 +14,14 @@ type Packet struct {
 
 func (p *Packet) DataMap() map[string]interface{} {
 	return p.Data.(map[string]interface{})
+}
+
+func BuildPacket(op opcode.Opcode, data interface{}) Packet {
+	t := time.Now().UnixNano() / 1000000
+
+	return Packet{
+		Opcode: op,
+		Data: data,
+		Time: null.IntFrom(t),
+	}
 }
