@@ -2,6 +2,7 @@ package model
 
 import (
 	"gopkg.in/guregu/null.v4"
+	"time"
 )
 
 type UserId = int32
@@ -15,4 +16,5 @@ type User struct {
 	RefreshToken null.String
 	ExternalUserID null.String
 	Discriminator null.String `pg:"-"`
+	LastModified time.Time `pg:"default:now()"`
 }
