@@ -20,3 +20,13 @@ func NewUser(user *model.User) *User {
 		Avatar: user.Avatar,
 	}
 }
+
+func NewUserList(users []model.User) []*User {
+	list := make([]*User, len(users))
+
+	for i, v := range users {
+		list[i] = NewUser(&v)
+	}
+
+	return list
+}
