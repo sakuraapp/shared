@@ -27,8 +27,8 @@ type ServerMessage struct {
 
 type rawServerMessage ServerMessage
 
-func (m *ServerMessage) MarshalBinary() ([]byte, error) {
-	return msgpack.Marshal((*rawServerMessage)(m))
+func (m ServerMessage) MarshalBinary() ([]byte, error) {
+	return msgpack.Marshal((rawServerMessage)(m))
 }
 
 func (m *ServerMessage) UnmarshalBinary(b []byte) error {
