@@ -1,6 +1,9 @@
 package resource
 
-import "github.com/sakuraapp/shared/model"
+import (
+	"github.com/sakuraapp/shared/model"
+	"github.com/vmihailenco/msgpack/v5"
+)
 
 type MessageType int
 
@@ -20,4 +23,12 @@ type ServerMessage struct {
 	Target MessageTarget `msgpack:"tr,omitempty"`
 	Data Packet `msgpack:"d,omitempty"`
 	Origin string `msgpack:"o,omitempty"` // source/origin node of the message
+}
+
+func (m ServerMessage) MarshalBinary() ([]byte, error) {
+	return msgpack.Marshal(m)
+}
+
+func (m *ServerMessage) UnmarshalBinary(data []byte) error {
+	return msgpack.Unmarshal(data, m)
 }
