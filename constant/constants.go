@@ -8,6 +8,7 @@ const (
 	RoomInviteFmt = RoomFmt + ".invites"
 	RoomUsersFmt = RoomFmt + ".users"
 	RoomUserSessionsFmt = RoomUsersFmt + "%v.sessions"
+	RoomQueueFmt = RoomFmt + ".queue"
 
 	GatewayFmt = "gateway.%v"
 	BroadcastChName = "gateway.broadcast"
