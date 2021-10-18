@@ -9,6 +9,8 @@ const (
 	RoomUsersFmt = RoomFmt + ".users"
 	RoomUserSessionsFmt = RoomUsersFmt + "%v.sessions"
 	RoomQueueFmt = RoomFmt + ".queue"
+	RoomCurrentItemFmt = RoomFmt + ".currentItem"
+	RoomStateFmt = RoomFmt + ".state"
 
 	GatewayFmt = "gateway.%v"
 	BroadcastChName = "gateway.broadcast"
