@@ -14,7 +14,7 @@ type MediaItem struct {
 }
 
 type PlayerState struct {
-	CurrentTime time.Duration `json:"current_time" redis:"current_time" msgpack:"current_time"`
+	CurrentTime time.Duration `json:"currentTime" redis:"currentTime" msgpack:"currentTime"`
 	IsPlaying bool `json:"playing" redis:"playing" msgpack:"playing"`
-	PlaybackStart time.Time `json:"-" redis:"playback_start" msgpack:"playback_start"`
+	PlaybackStart time.Time `json:"-" redis:"playbackStart" msgpack:"playbackStart"`
 }
