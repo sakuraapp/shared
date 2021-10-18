@@ -1,6 +1,9 @@
 package resource
 
-import "time"
+import (
+	"github.com/sakuraapp/shared/resource/opcode"
+	"time"
+)
 
 type MediaItemInfo struct {
 	Title string `json:"title" redis:"title" msgpack:"title"`
@@ -17,4 +20,8 @@ type PlayerState struct {
 	CurrentTime time.Duration `json:"currentTime" redis:"currentTime" msgpack:"currentTime"`
 	IsPlaying bool `json:"playing" redis:"playing" msgpack:"playing"`
 	PlaybackStart time.Time `json:"-" redis:"playbackStart" msgpack:"playbackStart"`
+}
+
+func (p *PlayerState) BuildPacket() Packet {
+	return BuildPacket(opcode.PLAYER_STATE, p)
 }
