@@ -8,5 +8,5 @@ type MediaItemInfo struct {
 
 type MediaItem struct {
 	Id string `json:"id" redis:"id" msgpack:"id"`
-	MediaItemInfo
+	*MediaItemInfo
 }
