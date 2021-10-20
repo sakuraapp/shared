@@ -23,5 +23,5 @@ type PlayerState struct {
 }
 
 func (p *PlayerState) BuildPacket() Packet {
-	return BuildPacket(opcode.PLAYER_STATE, p)
+	return BuildPacket(opcode.PlayerState, p)
 }
