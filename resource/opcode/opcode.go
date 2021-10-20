@@ -3,21 +3,21 @@ package opcode
 type Opcode int
 
 const (
-	DISCONNECT Opcode = 0
-	AUTHENTICATE = 1
-	JOIN_ROOM = 2
-	LEAVE_ROOM = 3
-	CREATE_ROOM = 4
-	ADD_USER = 5
-	REMOVE_USER = 6
-	PLAYER_STATE = 7
-	SEND_MESSAGE = 8
-	QUEUE_ADD = 9
-	QUEUE_REMOVE = 10
-	VIDEO_END = 11
-	VIDEO_SKIP = 12
-	ROOM_JOIN_REQUEST = 13
-	SET_ROOM_TYPE = 14
-	DISPATCH_CONTROL = 15
-	ROOM_USERS = 16
+	Disconnect Opcode = 0
+	Authenticate = 1
+	JoinRoom = 2
+	LeaveRoom = 3
+	CreateRoom = 4
+	AddUser = 5
+	RemoveUser = 6
+	PlayerState = 7
+	SendMessage = 8
+	QueueAdd = 9
+	QueueRemove = 10
+	VideoSet = 11
+	VideoEnd = 12
+	VideoSkip = 13
+	RoomJoinRequest = 14
+	SetRoomType = 15
+	DispatchControl = 16
 )
