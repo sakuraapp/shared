@@ -2,6 +2,7 @@ package resource
 
 import (
 	"github.com/sakuraapp/shared/resource/opcode"
+	"github.com/vmihailenco/msgpack/v5"
 	"time"
 )
 
@@ -16,12 +17,32 @@ type MediaItem struct {
 	*MediaItemInfo
 }
 
+type rawMediaItem MediaItem
+
+func (i MediaItem) MarshalBinary() ([]byte, error) {
+	return msgpack.Marshal((rawMediaItem)(i))
+}
+
+func (i *MediaItem) UnmarshalBinary(b []byte) error {
+	return msgpack.Unmarshal(b, (*rawMediaItem)(i))
+}
+
 type PlayerState struct {
 	CurrentTime time.Duration `json:"currentTime" redis:"currentTime" msgpack:"currentTime"`
 	IsPlaying bool `json:"playing" redis:"playing" msgpack:"playing"`
 	PlaybackStart time.Time `json:"-" redis:"playbackStart" msgpack:"playbackStart"`
 }
 
-func (p *PlayerState) BuildPacket() Packet {
-	return BuildPacket(opcode.PlayerState, p)
+type rawPlayerState PlayerState
+
+func (s PlayerState) MarshalBinary() ([]byte, error) {
+	return msgpack.Marshal((rawPlayerState)(s))
+}
+
+func (s *PlayerState) UnmarshalBinary(b []byte) error {
+	return msgpack.Unmarshal(b, (*rawPlayerState)(s))
+}
+
+func (s *PlayerState) BuildPacket() Packet {
+	return BuildPacket(opcode.PlayerState, s)
 }
