@@ -1,6 +1,7 @@
 package resource
 
 import (
+	"github.com/sakuraapp/shared/model"
 	"github.com/sakuraapp/shared/resource/opcode"
 	"time"
 )
@@ -13,6 +14,7 @@ type MediaItemInfo struct {
 
 type MediaItem struct {
 	Id string `json:"id" redis:"id" msgpack:"id"`
+	Author model.UserId `json:"author" redis:"author" msgpack:"author"`
 	*MediaItemInfo
 }
 
