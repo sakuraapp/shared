@@ -11,13 +11,15 @@ const (
 	AddUser = 5
 	RemoveUser = 6
 	PlayerState = 7
-	SendMessage = 8
-	QueueAdd = 9
-	QueueRemove = 10
-	VideoSet = 11
-	VideoEnd = 12
-	VideoSkip = 13
-	RoomJoinRequest = 14
-	SetRoomType = 15
-	DispatchControl = 16
+	SetPlaying = 8
+	SetTime = 9
+	SendMessage = 10
+	QueueAdd = 11
+	QueueRemove = 12
+	VideoSet = 13
+	VideoEnd = 14
+	VideoSkip = 15
+	RoomJoinRequest = 16
+	SetRoomType = 17
+	DispatchControl = 18
 )
