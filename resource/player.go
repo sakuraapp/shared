@@ -2,6 +2,7 @@ package resource
 
 import (
 	"github.com/sakuraapp/shared/model"
+	"github.com/vmihailenco/msgpack/v5"
 	"time"
 )
 
@@ -15,6 +16,16 @@ type MediaItem struct {
 	Id string `json:"id" redis:"id" msgpack:"id"`
 	Author model.UserId `json:"author" redis:"author" msgpack:"author"`
 	*MediaItemInfo
+}
+
+type rawMediaItem MediaItem
+
+func (i MediaItem) MarshalBinary() ([]byte, error) {
+	return msgpack.Marshal((rawMediaItem)(i))
+}
+
+func (i *MediaItem) UnmarshalBinary(b []byte) error {
+	return msgpack.Unmarshal(b, (*rawMediaItem)(i))
 }
 
 type PlayerState struct {
