@@ -9,6 +9,7 @@ const (
 	RoomUsersFmt = RoomFmt + ".users"
 	RoomUserSessionsFmt = RoomUsersFmt + "%v.sessions"
 	RoomQueueFmt = RoomFmt + ".queue"
+	RoomQueueItemsFmt = RoomQueueFmt + ".items"
 	RoomCurrentItemFmt = RoomFmt + ".currentItem"
 	RoomStateFmt = RoomFmt + ".state"
 
