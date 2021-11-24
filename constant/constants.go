@@ -12,6 +12,7 @@ const (
 	RoomQueueItemsFmt = RoomQueueFmt + ".items"
 	RoomCurrentItemFmt = RoomFmt + ".currentItem"
 	RoomStateFmt = RoomFmt + ".state"
+	RoomVideoEndAckFmt = RoomFmt + ".endAck"
 
 	GatewayFmt = "gateway.%v"
 	BroadcastChName = "gateway.broadcast"
