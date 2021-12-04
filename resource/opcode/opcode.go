@@ -19,6 +19,6 @@ const (
 	VideoEnd = 13
 	VideoSkip = 14
 	RoomJoinRequest = 15
-	SetRoomType = 16
-	DispatchControl = 17
+	DispatchControl = 16
+	UpdateRoom = 17
 )
