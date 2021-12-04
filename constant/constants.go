@@ -1,5 +1,7 @@
 package constant
 
+import "time"
+
 const (
 	UserSessionsFmt = "user_sessions.%v"
 	SessionFmt = "session.%v"
@@ -18,5 +20,8 @@ const (
 	BroadcastChName = "gateway.broadcast"
 
 	UserCacheFmt = "c.user.%v"
+	UserCacheTTL = 15 * time.Minute
+
 	RoomCacheFmt = "c.room.%v"
+	RoomCacheTTL = 15 * time.Minute
 )
