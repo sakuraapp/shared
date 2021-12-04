@@ -16,4 +16,7 @@ const (
 
 	GatewayFmt = "gateway.%v"
 	BroadcastChName = "gateway.broadcast"
+
+	UserCacheFmt = "c.user.%v"
+	RoomCacheFmt = "c.room.%v"
 )
