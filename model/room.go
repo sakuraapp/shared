@@ -7,5 +7,5 @@ type Room struct {
 	Name string
 	OwnerId UserId ``
 	Owner *User   `pg:"rel:has-one"`
-	Private bool
+	Private bool `pg:",use_zero"`
 }
