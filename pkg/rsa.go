@@ -70,34 +70,34 @@ func ParseRSAPublicKeyFromPEM(key []byte) (*rsa.PublicKey, error) {
 	return pkey, nil
 }
 
-func LoadRSAPrivateKey(path string, passphrase string) *rsa.PrivateKey {
+func LoadRSAPrivateKey(path string, passphrase string) (*rsa.PrivateKey, error) {
 	data, err := ioutil.ReadFile(path)
 
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
 
 	key, err := ParseRSAPrivateKeyFromPEM(data, passphrase)
 
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
 
-	return key
+	return key, nil
 }
 
-func LoadRSAPublicKey(path string) *rsa.PublicKey {
+func LoadRSAPublicKey(path string) (*rsa.PublicKey, error) {
 	data, err := ioutil.ReadFile(path)
 
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
 
 	key, err := ParseRSAPublicKeyFromPEM(data)
 
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
 
-	return key
+	return key, nil
 }
