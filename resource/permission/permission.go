@@ -1,6 +1,6 @@
 package permission
 
-type Permission int
+type Permission int32
 
 const (
 	QUEUE_ADD Permission = 1
