@@ -20,12 +20,12 @@ func (r Role) Permissions() permission.Permission {
 	return permissions[r]
 }
 
-type RoleManager struct {
+type Manager struct {
 	roles map[Role]bool
 	permissions permission.Permission
 }
 
-func (m *RoleManager) recalculatePerms() {
+func (m *Manager) recalculatePerms() {
 	m.permissions = 0
 
 	for role := range m.roles {
@@ -33,21 +33,21 @@ func (m *RoleManager) recalculatePerms() {
 	}
 }
 
-func (m *RoleManager) Add(role Role) {
+func (m *Manager) Add(role Role) {
 	m.roles[role] = true
 	m.permissions |= role.Permissions()
 }
 
-func (m *RoleManager) Remove(role Role) {
+func (m *Manager) Remove(role Role) {
 	delete(m.roles, role)
 	m.recalculatePerms()
 }
 
-func (m *RoleManager) Has(role Role) bool {
+func (m *Manager) Has(role Role) bool {
 	return m.roles[role]
 }
 
-func (m *RoleManager) Roles() []Role {
+func (m *Manager) Roles() []Role {
 	roles := make([]Role, len(m.roles))
 
 	for role := range m.roles {
@@ -57,16 +57,16 @@ func (m *RoleManager) Roles() []Role {
 	return roles
 }
 
-func (m *RoleManager) Permissions() permission.Permission {
+func (m *Manager) Permissions() permission.Permission {
 	return m.permissions
 }
 
-func (m *RoleManager) HasPermission(perm permission.Permission) bool {
+func (m *Manager) HasPermission(perm permission.Permission) bool {
 	return m.permissions.Has(perm)
 }
 
-func NewRoleManager() *RoleManager {
-	return &RoleManager{
+func NewManager() *Manager {
+	return &Manager{
 		roles: map[Role]bool{},
 		permissions: 0,
 	}
