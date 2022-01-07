@@ -2,6 +2,7 @@ package resource
 
 import (
 	"github.com/sakuraapp/shared/model"
+	"github.com/sakuraapp/shared/resource/role"
 )
 
 type Room struct {
@@ -32,4 +33,9 @@ func NewRoomList(rooms []model.Room) []*Room {
 	}
 
 	return list
+}
+
+type RoomMember struct {
+	User  User        `json:"user"`
+	Roles []role.Role `json:"roles" json:"roles"`
 }
