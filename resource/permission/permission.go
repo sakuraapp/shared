@@ -6,7 +6,9 @@ const (
 	QUEUE_ADD Permission = 1
 	QUEUE_EDIT = 2
 	VIDEO_REMOTE = 4
-	ALL = QUEUE_ADD | QUEUE_EDIT | VIDEO_REMOTE
+	KICK_MEMBERS = 8
+	MANAGE_ROLES = 16
+	ALL = 31 // (2 ^ no. of roles) - 1
 )
 
 func (p Permission) Has(perm Permission) bool {

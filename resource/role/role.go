@@ -12,7 +12,7 @@ const (
 
 var permissions = map[Role]permission.Permission{
 	MEMBER: permission.QUEUE_ADD,
-	MANAGER: permission.QUEUE_ADD | permission.QUEUE_EDIT | permission.VIDEO_REMOTE,
+	MANAGER: permission.QUEUE_ADD | permission.QUEUE_EDIT | permission.VIDEO_REMOTE | permission.KICK_MEMBERS,
 	HOST: permission.ALL,
 }
 
