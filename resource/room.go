@@ -36,6 +36,30 @@ func NewRoomList(rooms []model.Room) []*Room {
 }
 
 type RoomMember struct {
-	User  User        `json:"user"`
+	User  *User       `json:"user"`
 	Roles []role.Role `json:"roles" json:"roles"`
+}
+
+func NewRoomMember(member *model.RoomMember) *RoomMember {
+	user := NewUser(&member.User)
+	roles := make([]role.Role, len(member.Roles))
+
+	for _, userRole := range member.Roles {
+		roles = append(roles, userRole.Role)
+	}
+
+	return &RoomMember{
+		User: user,
+		Roles: roles,
+	}
+}
+
+func NewRoomMemberList(members []model.RoomMember) []*RoomMember {
+	list := make([]*RoomMember, len(members))
+
+	for i, v := range members {
+		list[i] = NewRoomMember(&v)
+	}
+
+	return list
 }
