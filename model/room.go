@@ -9,8 +9,3 @@ type Room struct {
 	Owner *User   `pg:"rel:has-one"`
 	Private bool `pg:",use_zero"`
 }
-
-type RoomMember struct {
-	User
-	Roles []*UserRole `pg:"rel:has-many"`
-}

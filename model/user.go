@@ -18,3 +18,8 @@ type User struct {
 	Discriminator null.String `pg:"-"`
 	LastModified time.Time `pg:"default:now()"`
 }
+
+type RoomMember struct {
+	User
+	Roles []*UserRole `pg:"rel:has-many"`
+}
