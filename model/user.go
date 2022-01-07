@@ -20,7 +20,7 @@ type User struct {
 }
 
 type RoomMember struct {
-	tableName struct{} `pg:"users"`
+	tableName struct{} `pg:"users,alias:user"`
 	User
 	Roles []*UserRole `pg:"rel:has-many"`
 }
