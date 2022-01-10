@@ -21,4 +21,7 @@ const (
 	RoomJoinRequest = 15
 	DispatchControl = 16
 	UpdateRoom = 17
+	KickUser = 18
+	AddRole = 19
+	RemoveRole = 20
 )
