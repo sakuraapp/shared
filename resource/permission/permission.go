@@ -8,7 +8,8 @@ const (
 	VIDEO_REMOTE = 4
 	KICK_MEMBERS = 8
 	MANAGE_ROLES = 16
-	ALL = 31 // (2 ^ no. of roles) - 1
+	MANAGE_ROOM = 32
+	ALL = (1 << 6) - 1 // (2 ^ no. of roles) - 1
 )
 
 func (p Permission) Has(perm Permission) bool {
