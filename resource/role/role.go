@@ -119,16 +119,12 @@ func NewManager() *Manager {
 	}
 }
 
-func BuildManager(userRoles []model.UserRole, isRoomOwner bool) *Manager {
+func BuildManager(userRoles []model.UserRole) *Manager {
 	m := NewManager()
 	m.Add(MEMBER)
 
 	for _, userRole := range userRoles {
 		m.Add(userRole.RoleId)
-	}
-
-	if isRoomOwner {
-		m.Add(HOST)
 	}
 
 	return m
