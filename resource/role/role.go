@@ -1,6 +1,7 @@
 package role
 
 import (
+	"github.com/sakuraapp/shared/model"
 	"github.com/sakuraapp/shared/resource/permission"
 )
 
@@ -116,4 +117,19 @@ func NewManager() *Manager {
 		roles: map[Id]bool{},
 		permissions: 0,
 	}
+}
+
+func BuildManager(userRoles []model.UserRole, isRoomOwner bool) *Manager {
+	m := NewManager()
+	m.Add(MEMBER)
+
+	for _, userRole := range userRoles {
+		m.Add(userRole.RoleId)
+	}
+
+	if isRoomOwner {
+		m.Add(HOST)
+	}
+
+	return m
 }
