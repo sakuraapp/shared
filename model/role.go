@@ -6,5 +6,7 @@ type UserRoleId = int32
 
 type UserRole struct {
 	Id UserRoleId
+	UserId UserId
+	RoomId RoomId
 	RoleId role.Id
 }
