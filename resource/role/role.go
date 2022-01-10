@@ -1,60 +1,106 @@
 package role
 
-import "github.com/sakuraapp/shared/resource/permission"
+import (
+	"github.com/sakuraapp/shared/resource/permission"
+)
 
-type Role int32
+type Id int32
 
 const (
-	MEMBER Role = 0
+	MEMBER Id = 0
 	MANAGER = 1
 	HOST = 2
 )
 
-var permissions = map[Role]permission.Permission{
-	MEMBER: permission.QUEUE_ADD,
-	MANAGER: permission.QUEUE_ADD | permission.QUEUE_EDIT | permission.VIDEO_REMOTE | permission.KICK_MEMBERS,
-	HOST: permission.ALL,
+type Role struct {
+	id Id
+	permissions permission.Permission
+	order int
 }
 
-func (r Role) Permissions() permission.Permission {
-	return permissions[r]
+func (r *Role) Id() Id {
+	return r.id
+}
+
+func (r *Role) Permissions() permission.Permission {
+	return r.permissions
+}
+
+func (r *Role) Order() int {
+	return r.order
+}
+
+var roles = map[Id]*Role{
+	MEMBER: {
+		id: MEMBER,
+		permissions: permission.QUEUE_ADD,
+		order: 0,
+	},
+	MANAGER: {
+		id: MANAGER,
+		permissions: permission.QUEUE_ADD | permission.QUEUE_EDIT | permission.VIDEO_REMOTE | permission.KICK_MEMBERS,
+		order: 1,
+	},
+	HOST: {
+		id: HOST,
+		permissions: permission.ALL,
+		order: 2,
+	},
+}
+
+func GetRole(id Id) *Role {
+	return roles[id]
 }
 
 type Manager struct {
-	roles map[Role]bool
+	roles map[Id]bool
 	permissions permission.Permission
 }
 
 func (m *Manager) recalculatePerms() {
 	m.permissions = 0
 
-	for role := range m.roles {
-		m.permissions |= role.Permissions()
+	for id := range m.roles {
+		m.permissions |= GetRole(id).Permissions()
 	}
 }
 
-func (m *Manager) Add(role Role) {
-	m.roles[role] = true
-	m.permissions |= role.Permissions()
+func (m *Manager) Add(id Id) {
+	m.roles[id] = true
+	m.permissions |= GetRole(id).Permissions()
 }
 
-func (m *Manager) Remove(role Role) {
-	delete(m.roles, role)
+func (m *Manager) Remove(id Id) {
+	delete(m.roles, id)
 	m.recalculatePerms()
 }
 
-func (m *Manager) Has(role Role) bool {
-	return m.roles[role]
+func (m *Manager) Has(id Id) bool {
+	return m.roles[id]
 }
 
-func (m *Manager) Roles() []Role {
-	roles := make([]Role, len(m.roles))
+func (m *Manager) Max() *Role {
+	max := new(Role)
 
-	for role := range m.roles {
-		roles = append(roles, role)
+	for id := range m.roles {
+		role := GetRole(id)
+
+		if max == nil || role.Order() > max.Order() {
+			max = role
+		}
 	}
 
-	return roles
+	return max
+}
+
+func (m *Manager) Slice() []Id {
+	roleList := make([]Id, len(m.roles))
+
+	for id := range m.roles {
+		roleList = append(roleList, id)
+	}
+
+	return roleList
 }
 
 func (m *Manager) Permissions() permission.Permission {
@@ -67,7 +113,7 @@ func (m *Manager) HasPermission(perm permission.Permission) bool {
 
 func NewManager() *Manager {
 	return &Manager{
-		roles: map[Role]bool{},
+		roles: map[Id]bool{},
 		permissions: 0,
 	}
 }

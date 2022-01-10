@@ -6,5 +6,5 @@ type UserRoleId = int32
 
 type UserRole struct {
 	Id UserRoleId
-	Role role.Role
+	RoleId role.Id
 }

@@ -37,15 +37,15 @@ func NewRoomList(rooms []model.Room) []*Room {
 
 type RoomMember struct {
 	User  *User       `json:"user"`
-	Roles []role.Role `json:"roles" json:"roles"`
+	Roles []role.Id `json:"roles" json:"roles"`
 }
 
 func NewRoomMember(member *model.RoomMember) *RoomMember {
 	user := NewUser(&member.User)
-	roles := make([]role.Role, len(member.Roles))
+	roles := make([]role.Id, len(member.Roles))
 
 	for _, userRole := range member.Roles {
-		roles = append(roles, userRole.Role)
+		roles = append(roles, userRole.RoleId)
 	}
 
 	return &RoomMember{
