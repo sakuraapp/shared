@@ -15,7 +15,6 @@ const (
 
 type MessageTarget struct {
 	UserIds []model.UserId `msgpack:"u,omitempty"`
-	SessionIds []string `msgpack:"s,omitempty"`
 	IgnoredSessionIds map[string]bool `msgpack:"i,omitempty"`
 }
 
