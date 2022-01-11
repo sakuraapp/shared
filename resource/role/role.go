@@ -1,7 +1,6 @@
 package role
 
 import (
-	"github.com/sakuraapp/shared/model"
 	"github.com/sakuraapp/shared/resource/permission"
 )
 
@@ -117,15 +116,4 @@ func NewManager() *Manager {
 		roles: map[Id]bool{},
 		permissions: 0,
 	}
-}
-
-func BuildManager(userRoles []model.UserRole) *Manager {
-	m := NewManager()
-	m.Add(MEMBER)
-
-	for _, userRole := range userRoles {
-		m.Add(userRole.RoleId)
-	}
-
-	return m
 }
