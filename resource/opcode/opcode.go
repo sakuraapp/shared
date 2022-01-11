@@ -24,4 +24,5 @@ const (
 	KickUser = 18
 	AddRole = 19
 	RemoveRole = 20
+	UpdatePermissions = 21
 )
