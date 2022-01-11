@@ -22,5 +22,5 @@ type User struct {
 type RoomMember struct {
 	tableName struct{} `pg:"users,alias:user"`
 	User
-	Roles []*UserRole `pg:"rel:has-many"`
+	Roles []*UserRole `pg:"rel:has-many,join_fk:user_id"`
 }
