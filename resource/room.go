@@ -42,7 +42,7 @@ type RoomMember struct {
 
 func NewRoomMember(member *model.RoomMember) *RoomMember {
 	user := NewUser(&member.User)
-	roles := make([]role.Id, len(member.Roles))
+	roles := make([]role.Id, 0, len(member.Roles))
 
 	for _, userRole := range member.Roles {
 		roles = append(roles, userRole.RoleId)

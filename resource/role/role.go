@@ -94,7 +94,7 @@ func (m *Manager) Max() *Role {
 }
 
 func (m *Manager) Slice() []Id {
-	roleList := make([]Id, len(m.roles))
+	roleList := make([]Id, 0, len(m.roles))
 
 	for id := range m.roles {
 		roleList = append(roleList, id)
