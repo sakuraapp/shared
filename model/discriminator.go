@@ -5,5 +5,5 @@ type Discriminator struct {
 	Name string
 	Value string
 	OwnerId UserId
-	Owner *User
+	Owner *User `pg:"rel:has-one"`
 }
