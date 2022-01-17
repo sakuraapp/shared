@@ -12,7 +12,7 @@ type Room struct {
 	Private bool `json:"private"`
 }
 
-func NewRoom(room *model.Room) *Room {
+func (b *Builder) NewRoom(room *model.Room) *Room {
 	if room.Owner == nil && room.OwnerId != 0 {
 		room.Owner = &model.User{Id: room.OwnerId}
 	}
@@ -20,16 +20,16 @@ func NewRoom(room *model.Room) *Room {
 	return &Room{
 		room.Id,
 		room.Name,
-		NewUser(room.Owner),
+		b.NewUser(room.Owner),
 		room.Private,
 	}
 }
 
-func NewRoomList(rooms []model.Room) []*Room {
+func (b *Builder) NewRoomList(rooms []model.Room) []*Room {
 	list := make([]*Room, len(rooms))
 
 	for i, v := range rooms {
-		list[i] = NewRoom(&v)
+		list[i] = b.NewRoom(&v)
 	}
 
 	return list
@@ -40,8 +40,8 @@ type RoomMember struct {
 	Roles []role.Id `json:"roles" json:"roles"`
 }
 
-func NewRoomMember(member *model.RoomMember) *RoomMember {
-	user := NewUser(&member.User)
+func (b *Builder) NewRoomMember(member *model.RoomMember) *RoomMember {
+	user := b.NewUser(&member.User)
 
 	roles := make([]role.Id, 0, len(member.Roles) + 1)
 	roles = append(roles, role.MEMBER)
@@ -56,11 +56,11 @@ func NewRoomMember(member *model.RoomMember) *RoomMember {
 	}
 }
 
-func NewRoomMemberList(members []model.RoomMember) []*RoomMember {
+func (b *Builder) NewRoomMemberList(members []model.RoomMember) []*RoomMember {
 	list := make([]*RoomMember, len(members))
 
 	for i, v := range members {
-		list[i] = NewRoomMember(&v)
+		list[i] = b.NewRoomMember(&v)
 	}
 
 	return list

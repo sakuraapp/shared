@@ -12,20 +12,26 @@ type User struct {
 	Avatar null.String `json:"avatar"`
 }
 
-func NewUser(user *model.User) *User {
-	return &User{
+func (b *Builder) NewUser(user *model.User) *User {
+	u := &User{
 		Id: user.Id,
 		Username: user.Username,
 		Discriminator: user.Discriminator.ValueOrZero(),
 		Avatar: user.Avatar,
 	}
+
+	if b.userFormatter != nil {
+		u = b.userFormatter(u)
+	}
+
+	return u
 }
 
-func NewUserList(users []model.User) []*User {
+func (b *Builder) NewUserList(users []model.User) []*User {
 	list := make([]*User, len(users))
 
 	for i, v := range users {
-		list[i] = NewUser(&v)
+		list[i] = b.NewUser(&v)
 	}
 
 	return list
