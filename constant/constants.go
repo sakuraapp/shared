@@ -7,7 +7,7 @@ const (
 	SessionFmt = "session.%v"
 
 	RoomFmt = "room.%v"
-	RoomInviteFmt = RoomFmt + ".invites"
+	RoomJoinRequestsFmt = RoomFmt + ".requests"
 	RoomUsersFmt = RoomFmt + ".users"
 	RoomUserSessionsFmt = RoomUsersFmt + ".%v.sessions"
 	RoomQueueFmt = RoomFmt + ".queue"
