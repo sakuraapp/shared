@@ -26,4 +26,5 @@ const (
 	RemoveRole = 20
 	UpdatePermissions = 21
 	AddNotification = 22
+	Error = 23
 )
