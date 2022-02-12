@@ -1,7 +1,7 @@
 package resource
 
 import (
-	model2 "github.com/sakuraapp/shared/pkg/model"
+	"github.com/sakuraapp/shared/pkg/model"
 	"github.com/sakuraapp/shared/pkg/resource/permission"
 	"github.com/vmihailenco/msgpack/v5"
 )
@@ -15,8 +15,8 @@ const (
 )
 
 type MessageTarget struct {
-	UserIds           []model2.UserId       `msgpack:"u,omitempty"`
-	RoomId            model2.RoomId         `msgpack:"r,omitempty"`
+	UserIds           []model.UserId       `msgpack:"u,omitempty"`
+	RoomId            model.RoomId         `msgpack:"r,omitempty"`
 	Permissions       permission.Permission `msgpack:"p,omitempty"`
 	IgnoredSessionIds map[string]bool       `msgpack:"i,omitempty"`
 }
