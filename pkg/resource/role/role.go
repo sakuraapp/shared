@@ -1,21 +1,21 @@
 package role
 
 import (
-	"github.com/sakuraapp/shared/resource/permission"
+	"github.com/sakuraapp/shared/pkg/resource/permission"
 )
 
 type Id int32
 
 const (
-	MEMBER Id = 0
-	MANAGER = 1
+	MEMBER  Id = 0
+	MANAGER    = 1
 	HOST = 2
 )
 
 type Role struct {
-	id Id
+	id          Id
 	permissions permission.Permission
-	order int
+	order       int
 }
 
 func (r *Role) Id() Id {
@@ -32,19 +32,19 @@ func (r *Role) Order() int {
 
 var roles = map[Id]*Role{
 	MEMBER: {
-		id: MEMBER,
+		id:          MEMBER,
 		permissions: permission.QUEUE_ADD,
-		order: 0,
+		order:       0,
 	},
 	MANAGER: {
-		id: MANAGER,
+		id:          MANAGER,
 		permissions: permission.QUEUE_ADD | permission.QUEUE_EDIT | permission.VIDEO_REMOTE | permission.KICK_MEMBERS,
-		order: 1,
+		order:       1,
 	},
 	HOST: {
-		id: HOST,
+		id:          HOST,
 		permissions: permission.ALL,
-		order: 2,
+		order:       2,
 	},
 }
 
@@ -53,7 +53,7 @@ func GetRole(id Id) *Role {
 }
 
 type Manager struct {
-	roles map[Id]bool
+	roles       map[Id]bool
 	permissions permission.Permission
 }
 

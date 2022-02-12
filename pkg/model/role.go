@@ -1,13 +1,13 @@
 package model
 
 import (
-	"github.com/sakuraapp/shared/resource/role"
+	"github.com/sakuraapp/shared/pkg/resource/role"
 )
 
 type UserRoleId = int32
 
 type UserRole struct {
-	Id UserRoleId
+	Id     UserRoleId
 	UserId UserId
 	RoomId RoomId
 	RoleId role.Id

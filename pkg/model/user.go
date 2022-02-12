@@ -8,7 +8,7 @@ import (
 type UserId = int32
 
 type User struct {
-	Id UserId
+	Id       UserId
 	Username string
 	Avatar null.String
 	Provider string

@@ -3,8 +3,8 @@ package opcode
 type Opcode int
 
 const (
-	Disconnect Opcode = 0
-	Authenticate = 1
+	Disconnect   Opcode = 0
+	Authenticate        = 1
 	JoinRoom = 2
 	LeaveRoom = 3
 	CreateRoom = 4

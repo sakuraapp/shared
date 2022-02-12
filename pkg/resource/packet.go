@@ -1,14 +1,14 @@
 package resource
 
 import (
-	"github.com/sakuraapp/shared/resource/opcode"
+	"github.com/sakuraapp/shared/pkg/resource/opcode"
 	"gopkg.in/guregu/null.v4"
 	"time"
 )
 
 type Packet struct {
 	Opcode opcode.Opcode `json:"op"`
-	Data interface{} `json:"d"`
+	Data   interface{}   `json:"d"`
 	Time null.Int `json:"t"`
 }
 

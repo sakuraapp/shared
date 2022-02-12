@@ -3,8 +3,8 @@ package permission
 type Permission int32
 
 const (
-	QUEUE_ADD Permission = 1
-	QUEUE_EDIT = 2
+	QUEUE_ADD  Permission = 1
+	QUEUE_EDIT            = 2
 	VIDEO_REMOTE = 4
 	KICK_MEMBERS = 8
 	MANAGE_ROLES = 16

@@ -7,7 +7,7 @@ const (
 )
 
 type Notification struct {
-	Id string `json:"id"`
+	Id   string           `json:"id"`
 	Type NotificationType `json:"type"`
-	Data interface{} `json:"data,omitempty"`
+	Data interface{}      `json:"data,omitempty"`
 }

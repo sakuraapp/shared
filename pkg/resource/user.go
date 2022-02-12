@@ -1,13 +1,13 @@
 package resource
 
 import (
-	"github.com/sakuraapp/shared/model"
+	"github.com/sakuraapp/shared/pkg/model"
 	"gopkg.in/guregu/null.v4"
 )
 
 type User struct {
-	Id model.UserId `json:"id"`
-	Username string `json:"username,omitempty"`
+	Id       model.UserId `json:"id"`
+	Username string       `json:"username,omitempty"`
 	Discriminator string `json:"discriminator,omitempty"`
 	Avatar null.String `json:"avatar"`
 }
