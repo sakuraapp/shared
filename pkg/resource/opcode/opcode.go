@@ -27,4 +27,6 @@ const (
 	UpdatePermissions = 21
 	AddNotification = 22
 	Error = 23
+	QueueUpdate = 24
+	QueueDecrement = 25
 )
