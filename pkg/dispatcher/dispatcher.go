@@ -11,15 +11,15 @@ import (
 )
 
 type LocalDispatcher interface {
-	DispatchLocal(msg resource.ServerMessage) error
-	DispatchRoomLocal(roomId model.RoomId, msg resource.ServerMessage) error
+	DispatchLocal(msg *resource.ServerMessage) error
+	DispatchRoomLocal(roomId model.RoomId, msg *resource.ServerMessage) error
 	HandleServerMessage(msg *resource.ServerMessage)
 }
 
 type Dispatcher interface {
 	LocalDispatcher
-	Dispatch(msg resource.ServerMessage) error
-	DispatchRoom(roomId model.RoomId, msg resource.ServerMessage) error
+	Dispatch(msg *resource.ServerMessage) error
+	DispatchRoom(roomId model.RoomId, msg *resource.ServerMessage) error
 }
 
 type RedisDispatcher struct {
@@ -29,7 +29,7 @@ type RedisDispatcher struct {
 	rdb *redis.Client
 }
 
-func (d *RedisDispatcher) Dispatch(msg resource.ServerMessage) error {
+func (d *RedisDispatcher) Dispatch(msg *resource.ServerMessage) error {
 	msg.Origin = d.nodeId
 
 	switch msg.Type {
@@ -51,9 +51,16 @@ func (d *RedisDispatcher) Dispatch(msg resource.ServerMessage) error {
 
 		pipe := d.rdb.Pipeline()
 		locNodeId := d.nodeId
-		roomId := msg.Target.RoomId
 
-		for _, userId := range msg.Target.UserIds {
+		var roomId model.RoomId
+		var userIds []model.UserId
+
+		if msg.Target != nil {
+			roomId = msg.Target.RoomId
+			userIds = msg.Target.UserIds
+		}
+
+		for _, userId := range userIds {
 			if roomId == 0 {
 				pipe.SMembers(d.ctx, fmt.Sprintf(constant.UserSessionsFmt, userId))
 			} else {
@@ -111,7 +118,7 @@ func (d *RedisDispatcher) Dispatch(msg resource.ServerMessage) error {
 				if nodeId == locNodeId {
 					if d.LocalDispatcher != nil {
 						if msg.Type == resource.SERVER_MESSAGE {
-							d.HandleServerMessage(&msg)
+							d.HandleServerMessage(msg)
 						} else {
 							d.DispatchLocal(msg)
 						}
@@ -133,7 +140,7 @@ func (d *RedisDispatcher) Dispatch(msg resource.ServerMessage) error {
 	return nil
 }
 
-func (d *RedisDispatcher) DispatchRoom(roomId model.RoomId, msg resource.ServerMessage) error {
+func (d *RedisDispatcher) DispatchRoom(roomId model.RoomId, msg *resource.ServerMessage) error {
 	msg.Origin = d.nodeId
 
 	if d.LocalDispatcher != nil {

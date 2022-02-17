@@ -23,8 +23,8 @@ type MessageTarget struct {
 
 type ServerMessage struct {
 	Type   MessageType   `msgpack:"t,omitempty"`
-	Target MessageTarget `msgpack:"tr,omitempty"`
-	Data   Packet        `msgpack:"d,omitempty"`
+	Target *MessageTarget `msgpack:"tr,omitempty"`
+	Data   *Packet        `msgpack:"d,omitempty"`
 	Origin string        `msgpack:"o,omitempty"` // source/origin node of the message
 }
 
