@@ -6,6 +6,13 @@ import (
 	"time"
 )
 
+const (
+	MediaItemTypeNormal = 0
+	MediaItemTypeChakra = 1
+)
+
+type MediaItemType int
+
 type MediaItemInfo struct {
 	Title string `json:"title" redis:"title" msgpack:"title"`
 	Icon string `json:"icon" redis:"icon" msgpack:"icon"`
@@ -15,6 +22,7 @@ type MediaItemInfo struct {
 type MediaItem struct {
 	Id     string       `json:"id" redis:"id" msgpack:"id"`
 	Author model.UserId `json:"author" redis:"author" msgpack:"author"`
+	Type   MediaItemType `json:"type" redis:"type" msgpack:"type"`
 	*MediaItemInfo
 }
 
