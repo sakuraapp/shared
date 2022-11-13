@@ -16,10 +16,10 @@ func (p *Packet) DataMap() map[string]interface{} {
 	return p.Data.(map[string]interface{})
 }
 
-func BuildPacket(op opcode.Opcode, data interface{}) *Packet {
+func BuildPacket(op opcode.Opcode, data interface{}) Packet {
 	t := time.Now().UnixNano() / 1000000
 
-	return &Packet{
+	return Packet{
 		Opcode: op,
 		Data: data,
 		Time: null.IntFrom(t),
