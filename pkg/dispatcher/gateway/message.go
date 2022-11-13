@@ -24,6 +24,10 @@ const (
 
 type FilterMap pubsub.FilterMap
 
+func NewFilterMap() FilterMap {
+	return FilterMap{}
+}
+
 func (m FilterMap) WithType(kind MessageType) FilterMap {
 	m[MessageFilterType] = kind
 

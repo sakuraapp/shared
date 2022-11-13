@@ -2,7 +2,6 @@ package resource
 
 import (
 	"github.com/sakuraapp/shared/pkg/model"
-	"github.com/vmihailenco/msgpack/v5"
 	"time"
 )
 
@@ -26,7 +25,7 @@ type MediaItem struct {
 	*MediaItemInfo
 }
 
-type rawMediaItem MediaItem
+/* type rawMediaItem MediaItem
 
 func (i MediaItem) MarshalBinary() ([]byte, error) {
 	return msgpack.Marshal((rawMediaItem)(i))
@@ -34,7 +33,7 @@ func (i MediaItem) MarshalBinary() ([]byte, error) {
 
 func (i *MediaItem) UnmarshalBinary(b []byte) error {
 	return msgpack.Unmarshal(b, (*rawMediaItem)(i))
-}
+} */
 
 type PlayerState struct {
 	CurrentTime float64 `json:"currentTime" redis:"currentTime" msgpack:"currentTime"`
