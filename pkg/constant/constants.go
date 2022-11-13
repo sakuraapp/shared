@@ -3,6 +3,11 @@ package constant
 import "time"
 
 const (
+	NodeTopicFmt = "gateway.%v"
+	SessionTopicFmt = "session.%v"
+	UserTopicFmt = "user.%v"
+	RoomTopicFmt = "room.%v"
+
 	UserSessionsFmt = "user_sessions.%v"
 	SessionFmt = "session.%v"
 
@@ -15,9 +20,6 @@ const (
 	RoomCurrentItemFmt = RoomFmt + ".currentItem"
 	RoomStateFmt = RoomFmt + ".state"
 	RoomVideoEndAckFmt = RoomFmt + ".endAck"
-
-	GatewayFmt = "gateway.%v"
-	BroadcastChName = "gateway.broadcast"
 
 	UserCacheFmt = "c.user.%v"
 	UserCacheTTL = 15 * time.Minute
