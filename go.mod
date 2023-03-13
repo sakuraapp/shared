@@ -2,8 +2,6 @@ module github.com/sakuraapp/shared
 
 go 1.18
 
-replace github.com/sakuraapp/pubsub => /Users/jackie/Documents/Projects/Sakura/Source/pubsub
-
 require (
 	github.com/go-chi/jwtauth/v5 v5.0.2
 	github.com/go-chi/render v1.0.1
