@@ -71,6 +71,7 @@ github.com/sakuraapp/pubsub v0.0.0-20221113183055-5a79943ad3d8 h1:PJAJV+Dhgi3b7T
 github.com/sakuraapp/pubsub v0.0.0-20221113183055-5a79943ad3d8/go.mod h1:ZkO2NrDkHCLTSJLQ3lqiiVD/n8GAyD4KpH3qY1j+uro=
 github.com/sakuraapp/pubsub v0.0.0-20221113190712-0b5a16cfa4c6 h1:uYJHINBE+3OqxDtmZZ6SUhjlwxj4rRgEA5P6/eujapo=
 github.com/sakuraapp/pubsub v0.0.0-20221113190712-0b5a16cfa4c6/go.mod h1:ZkO2NrDkHCLTSJLQ3lqiiVD/n8GAyD4KpH3qY1j+uro=
+github.com/sakuraapp/pubsub v0.0.0-20230313165424-054ed0eba8a5/go.mod h1:jLW4an995jjBb4RwnltEaH2XZJ/JAzrfNZdSVbQ01QY=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
